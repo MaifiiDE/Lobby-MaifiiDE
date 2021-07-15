@@ -8,8 +8,11 @@ package de.maifii.lobby.listeners;
 
 import de.maifii.lobby.main.Lobby;
 import de.maifii.lobby.utils.ItemUtils;
+import de.maifii.lobby.utils.LocationUtils;
+import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
+import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
@@ -17,17 +20,21 @@ import org.bukkit.event.player.PlayerQuitEvent;
 
 public class ConnectionListener implements Listener {
 
+
+    @EventHandler
     public void onConnect(PlayerJoinEvent event) {
         Player spieler = (Player) event.getPlayer();
 
         spieler.getInventory().clear();
 
         ItemUtils.setItemInInventory(event.getPlayer().getInventory(), Material.COMPASS, "§6>> §eNavigator", 0);
-        ItemUtils.setItemInInventory(event.getPlayer().getInventory(), Material.BREWING_STAND_ITEM, "§6>> §ePartikel", 0);
+        ItemUtils.setItemInInventory(event.getPlayer().getInventory(), Material.BREWING_STAND_ITEM, "§6>> §ePartikel", 2);
 
-
+        LocationUtils.useLocation(event.getPlayer(), "Spawn");
     }
 
+
+    @EventHandler
     public void onDisconnect(PlayerQuitEvent event) {
         Player spieler = (Player) event.getPlayer();
 

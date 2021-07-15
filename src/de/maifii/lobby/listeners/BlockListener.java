@@ -9,6 +9,7 @@ package de.maifii.lobby.listeners;
 
 import de.maifii.lobby.main.Lobby;
 import org.bukkit.entity.Player;
+import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.block.BlockPlaceEvent;
@@ -16,7 +17,7 @@ import org.bukkit.event.block.BlockPlaceEvent;
 
 public class BlockListener implements Listener {
 
-
+    @EventHandler
     public void onBreak(BlockBreakEvent event) {
         Player spieler = (Player) event.getPlayer();
 
@@ -26,6 +27,7 @@ public class BlockListener implements Listener {
     }
 
 
+    @EventHandler
     public void onPlace(BlockPlaceEvent event) {
         Player spieler = (Player) event.getPlayer();
 

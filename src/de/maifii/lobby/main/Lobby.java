@@ -28,6 +28,7 @@ public class Lobby extends JavaPlugin {
         pluginManager.registerEvents(new MoveListener(), this);
         pluginManager.registerEvents(new ProtectListener(), this);
         pluginManager.registerEvents(new ConnectionListener(), this);
+        pluginManager.registerEvents(new NormalesInvClickListener(), this);
 
         getCommand("set").setExecutor(new SetCommand());
         getCommand("build").setExecutor(new BuildCommand());

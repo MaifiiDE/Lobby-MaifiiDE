@@ -27,7 +27,6 @@ public class BuildCommand implements CommandExecutor {
                     spieler.sendMessage(Lobby.Prefix + "Bitte benutze §e/build§7.");
                 }
             }
-            spieler.sendMessage(Lobby.Prefix + "Dazu hast du §ekeine §7Berechtigung.");
         }
         return false;
     }

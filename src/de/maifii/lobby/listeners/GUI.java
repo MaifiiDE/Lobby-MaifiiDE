@@ -1,7 +1,5 @@
 package de.maifii.lobby.listeners;
 
-
-
 // Code by Maifii 
 // Zeit: 22:40 | 07 , 14
 // Discord : MaifiiDE#3511
@@ -60,6 +58,9 @@ public class GUI implements Listener {
         ItemUtils.setItemInInventory(eff, Material.RED_ROSE, "§6>> §eHerzen", 0 );
         ItemUtils.setItemInInventory(eff, Material.WATER_LILY, "§6>> §eWasser", 1);
 
+
+        ItemUtils.setItemInInventory(eff, Material.BARRIER, "§6>> §eAblegen", 8);
+
         spieler.openInventory(eff);
     }
 
@@ -71,6 +72,14 @@ public class GUI implements Listener {
         if(event.getItem().getType() != Material.COMPASS) return;
         if(event.getAction() == Action.RIGHT_CLICK_AIR || event.getAction() == Action.RIGHT_CLICK_BLOCK) {
             onNavigator(event.getPlayer());
+        }
+    }
+
+    @EventHandler
+    public void onEffektOpen(PlayerInteractEvent event){
+        if(event.getItem().getType() != Material.BREWING_STAND_ITEM) return;
+        if(event.getAction() == Action.RIGHT_CLICK_BLOCK || event.getAction() == Action.RIGHT_CLICK_AIR) {
+            openEffekt(event.getPlayer());
         }
     }
 
@@ -96,17 +105,23 @@ public class GUI implements Listener {
             event.setCancelled(true);
             switch(event.getCurrentItem().getType()) {
                 case RED_ROSE:
+                    if(Lobby.getWasserPartikel().contains(spieler)) {
+                        Lobby.getWasserPartikel().remove(spieler);
+                    }
                     if(Lobby.getHerzPartikel().contains(spieler)) {
                         spieler.closeInventory();
                         spieler.sendMessage(Lobby.Prefix + "Du hast bereits diesen §ePartikel §7ausgewählt.");
                     }
                     else{
                         spieler.closeInventory();
-                        spieler.sendMessage(Lobby.Prefix + "Du hast nun die §Herz Partikel §7ausgewählt.");
+                        spieler.sendMessage(Lobby.Prefix + "Du hast nun die §eHerz Partikel §7ausgewählt.");
                         Lobby.getHerzPartikel().add(spieler);
                     }
                     break;
                 case WATER_LILY:
+                    if(Lobby.getHerzPartikel().contains(spieler)) {
+                        Lobby.getHerzPartikel().remove(spieler);
+                    }
                     if(Lobby.getWasserPartikel().contains(spieler)) {
                         spieler.closeInventory();
                         spieler.sendMessage(Lobby.Prefix + "Du hast bereits diesen §ePartikel §7ausgewählt.");
@@ -117,12 +132,17 @@ public class GUI implements Listener {
                         Lobby.getWasserPartikel().add(spieler);
                     }
                     break;
+                case BARRIER:
+                    Lobby.getEnderPartikel().remove(spieler);
+                    Lobby.getHerzPartikel().remove(spieler);
+                    Lobby.getWasserPartikel().remove(spieler);
+
+                    spieler.closeInventory();
+                    spieler.sendMessage(Lobby.Prefix + "Du hast §ealle §7deine Partikel abgelegt");
+                    break;
             }
         }
     }
-
-
-
 
 }
 

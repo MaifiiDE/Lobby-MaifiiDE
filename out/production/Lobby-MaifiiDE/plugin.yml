@@ -1,0 +1,9 @@
+name: Lobby-MaifiiDE
+main: de.maifii.lobby.main.Lobby
+version: 1.0
+
+commands:
+  set:
+    description: Location für Navigator setzen
+  build:
+    description: Setzt dich in den Bau Modus

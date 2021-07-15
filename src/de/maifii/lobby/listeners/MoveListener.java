@@ -9,6 +9,7 @@ package de.maifii.lobby.listeners;
 import de.maifii.lobby.main.Lobby;
 import org.bukkit.Effect;
 import org.bukkit.entity.Player;
+import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerMoveEvent;
 
@@ -16,6 +17,7 @@ import org.bukkit.event.player.PlayerMoveEvent;
 public class MoveListener implements Listener {
 
 
+    @EventHandler
     public void onMove(PlayerMoveEvent event) {
         Player spieler = (Player) event.getPlayer();
 
@@ -24,6 +26,9 @@ public class MoveListener implements Listener {
         }
         if(Lobby.getHerzPartikel().contains(spieler)) {
             spieler.getWorld().playEffect(spieler.getLocation(), Effect.HEART, 1);
+        }
+        if(Lobby.getWasserPartikel().contains(spieler)) {
+            spieler.getWorld().playEffect(spieler.getLocation(), Effect.WATERDRIP, 1);
         }
 
     }
