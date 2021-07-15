@@ -58,7 +58,7 @@ public class GUI implements Listener {
         Inventory eff = Bukkit.createInventory(null, 9*1, EffektGUI);
 
         ItemUtils.setItemInInventory(eff, Material.RED_ROSE, "§6>> §eHerzen", 0 );
-
+        ItemUtils.setItemInInventory(eff, Material.WATER_LILY, "§6>> §eWasser", 1);
 
         spieler.openInventory(eff);
     }
@@ -104,6 +104,17 @@ public class GUI implements Listener {
                         spieler.closeInventory();
                         spieler.sendMessage(Lobby.Prefix + "Du hast nun die §Herz Partikel §7ausgewählt.");
                         Lobby.getHerzPartikel().add(spieler);
+                    }
+                    break;
+                case WATER_LILY:
+                    if(Lobby.getWasserPartikel().contains(spieler)) {
+                        spieler.closeInventory();
+                        spieler.sendMessage(Lobby.Prefix + "Du hast bereits diesen §ePartikel §7ausgewählt.");
+                }
+                    else{
+                        spieler.closeInventory();
+                        spieler.sendMessage(Lobby.Prefix + "Du hast nun die §eWasser Partikel §7ausgewählt.");
+                        Lobby.getWasserPartikel().add(spieler);
                     }
                     break;
             }
