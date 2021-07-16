@@ -33,6 +33,8 @@ public class ConnectionListener implements Listener {
         ItemUtils.setItemInInventory(event.getPlayer().getInventory(), Material.CHEST, "§6>> §eGadgets", 6);
 
         LocationUtils.useLocation(event.getPlayer(), "Spawn");
+
+        event.setJoinMessage(null);
     }
 
 
@@ -44,6 +46,8 @@ public class ConnectionListener implements Listener {
         Lobby.getEnderPartikel().remove(spieler);
         Lobby.getHerzPartikel().remove(spieler);
         Lobby.getWasserPartikel().remove(spieler);
+
+        event.setQuitMessage(null);
     }
 }
 
