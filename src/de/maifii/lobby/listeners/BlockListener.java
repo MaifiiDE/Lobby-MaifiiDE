@@ -26,7 +26,6 @@ public class BlockListener implements Listener {
         }
     }
 
-
     @EventHandler
     public void onPlace(BlockPlaceEvent event) {
         Player spieler = (Player) event.getPlayer();
