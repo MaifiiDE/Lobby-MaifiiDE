@@ -3,6 +3,8 @@ package de.maifii.lobby.main;
 import de.maifii.lobby.commands.BuildCommand;
 import de.maifii.lobby.commands.SetCommand;
 import de.maifii.lobby.listeners.*;
+import de.maifii.lobby.listeners.Gadgets.EnderPerleListener;
+import net.minecraft.server.v1_8_R3.GameRules;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.PluginManager;
@@ -29,6 +31,7 @@ public class Lobby extends JavaPlugin {
         pluginManager.registerEvents(new ProtectListener(), this);
         pluginManager.registerEvents(new ConnectionListener(), this);
         pluginManager.registerEvents(new NormalesInvClickListener(), this);
+        pluginManager.registerEvents(new EnderPerleListener(), this);
 
         getCommand("set").setExecutor(new SetCommand());
         getCommand("build").setExecutor(new BuildCommand());
@@ -36,6 +39,7 @@ public class Lobby extends JavaPlugin {
 
     @Override
     public void onEnable() {
+
         this.register(Bukkit.getPluginManager());
 
         instance = instance;

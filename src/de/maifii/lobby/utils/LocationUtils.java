@@ -58,7 +58,7 @@ public class LocationUtils {
         double pitch = cfg.getDouble("Pitch");
 
         spieler.teleport(new Location(welt, cfg.getDouble("X"), cfg.getDouble("Y"), cfg.getDouble("Z"), (float) yaw, (float) pitch));
-        spieler.getWorld().playEffect(spieler.getLocation(), Effect.SMOKE, 1);
+        spieler.getWorld().playEffect(spieler.getLocation(), Effect.SMOKE, 3);
         spieler.playSound(spieler.getLocation(), Sound.NOTE_PLING, 1, 1);
     }
 

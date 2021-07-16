@@ -21,8 +21,10 @@ import org.bukkit.inventory.Inventory;
 
 public class GUI implements Listener {
 
+
     private static String NavigatorGUI = "§6>> §eNavigator";
-    private static String EffektGUI = "§6>> §eEffekte";
+    private static String EffektGUI = "§6>> §ePartikel";
+    private static String GadgetsGUI = "§6>> §eGadgets";
 
 
     public void onNavigator(Player spieler) {
@@ -64,12 +66,32 @@ public class GUI implements Listener {
         spieler.openInventory(eff);
     }
 
+    public void openGadgetsGUI(Player spieler) {
+        Inventory gad = Bukkit.createInventory(null, 9*1, GadgetsGUI);
 
+        ItemUtils.setItemInInventory(gad, Material.ENDER_PEARL, "§6>> §eEnderperle", 0);
+
+        spieler.openInventory(gad
+        );
+    }
+
+
+
+
+@EventHandler
+public void onGadgetOpen(PlayerInteractEvent event) {
+        if(event.getItem() != null);
+        if(event.getItem().getType() != Material.CHEST) return;
+        if(event.getAction() == Action.RIGHT_CLICK_AIR || event.getAction() == Action.RIGHT_CLICK_BLOCK) {
+            openGadgetsGUI(event.getPlayer());
+        }
+}
 
 
     @EventHandler
     public void onNavigatorOpen(PlayerInteractEvent event) {
-        if(event.getItem().getType() != Material.COMPASS) return;
+        if(event.getItem() !=null);
+        if (event.getItem().getType() != Material.COMPASS) return;
         if(event.getAction() == Action.RIGHT_CLICK_AIR || event.getAction() == Action.RIGHT_CLICK_BLOCK) {
             onNavigator(event.getPlayer());
         }
@@ -77,7 +99,8 @@ public class GUI implements Listener {
 
     @EventHandler
     public void onEffektOpen(PlayerInteractEvent event){
-        if(event.getItem().getType() != Material.BREWING_STAND_ITEM) return;
+        if(event.getItem() != null);
+        if (event.getItem().getType() != Material.BREWING_STAND_ITEM) return;
         if(event.getAction() == Action.RIGHT_CLICK_BLOCK || event.getAction() == Action.RIGHT_CLICK_AIR) {
             openEffekt(event.getPlayer());
         }
@@ -96,6 +119,25 @@ public class GUI implements Listener {
             }
         }
     }
+
+
+
+
+
+    @EventHandler
+    public void onGadgetsClick(InventoryClickEvent event) {
+        if(!(event.getWhoClicked() instanceof Player)) return;
+        Player spieler = (Player) event.getWhoClicked();
+        if(event.getInventory().getTitle().equals(GadgetsGUI)) {
+            event.setCancelled(true);
+            switch(event.getCurrentItem().getType()) {
+                case ENDER_PEARL:
+                    ItemUtils.setItemInInventory(spieler.getInventory(), Material.ENDER_PEARL, "§6>> §eEnderperle" ,4);
+                    break;
+            }
+        }
+    }
+
 
     @EventHandler
     public void OnEffekteClick(InventoryClickEvent event) {

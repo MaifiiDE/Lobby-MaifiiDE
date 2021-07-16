@@ -29,6 +29,8 @@ public class ConnectionListener implements Listener {
 
         ItemUtils.setItemInInventory(event.getPlayer().getInventory(), Material.COMPASS, "§6>> §eNavigator", 0);
         ItemUtils.setItemInInventory(event.getPlayer().getInventory(), Material.BREWING_STAND_ITEM, "§6>> §ePartikel", 2);
+        ItemUtils.setItemInInventory(event.getPlayer().getInventory(), Material.BARRIER, "§6>> §eGadget auswählen!", 4);
+        ItemUtils.setItemInInventory(event.getPlayer().getInventory(), Material.CHEST, "§6>> §eGadgets", 6);
 
         LocationUtils.useLocation(event.getPlayer(), "Spawn");
     }
