@@ -22,13 +22,13 @@ import org.bukkit.inventory.Inventory;
 public class GUI implements Listener {
 
 
-    private static String NavigatorGUI = "§6>> §eNavigator";
-    private static String EffektGUI = "§6>> §ePartikel";
-    private static String GadgetsGUI = "§6>> §eGadgets";
+    private static String navigatorGUI = "§6>> §eNavigator";
+    private static String effectGUI = "§6>> §ePartikel";
+    private static String gadgetsGUI = "§6>> §eGadgets";
 
 
-    public void onNavigator(Player spieler) {
-        Inventory nav = Bukkit.createInventory(null, 54, NavigatorGUI);
+    public void onNavigator(Player player) {
+        Inventory nav = Bukkit.createInventory(null, 54, navigatorGUI);
 
         ItemUtils.setItemInInventory(nav, Material.GRASS, "§6>> §eSpawn", 31);
 
@@ -50,12 +50,12 @@ public class GUI implements Listener {
         ItemUtils.setItemInInventory(nav, Material.BARRIER, " ", 53);
         ItemUtils.setItemInInventory(nav, Material.BARRIER, " ", 44);
 
-        spieler.openInventory(nav);
+        player.openInventory(nav);
     }
 
 
     public void openEffekt(Player spieler) {
-        Inventory eff = Bukkit.createInventory(null, 9*1, EffektGUI);
+        Inventory eff = Bukkit.createInventory(null, 9*1, effectGUI);
 
         ItemUtils.setItemInInventory(eff, Material.RED_ROSE, "§6>> §eHerzen", 0 );
         ItemUtils.setItemInInventory(eff, Material.WATER_LILY, "§6>> §eWasser", 1);
@@ -67,7 +67,7 @@ public class GUI implements Listener {
     }
 
     public void openGadgetsGUI(Player spieler) {
-        Inventory gad = Bukkit.createInventory(null, 9*1, GadgetsGUI);
+        Inventory gad = Bukkit.createInventory(null, 9*1, gadgetsGUI);
 
         ItemUtils.setItemInInventory(gad, Material.ENDER_PEARL, "§6>> §eEnderperle", 0);
 
@@ -110,7 +110,7 @@ public void onGadgetOpen(PlayerInteractEvent event) {
     public void onNavigatorClick(InventoryClickEvent event) {
         if(!(event.getWhoClicked() instanceof Player)) return;
         Player spieler = (Player) event.getWhoClicked();
-        if(event.getInventory().getTitle().equals(NavigatorGUI)) {
+        if(event.getInventory().getTitle().equals(navigatorGUI)) {
             event.setCancelled(true);
             switch(event.getCurrentItem().getType()) {
                 case GRASS:
@@ -128,7 +128,7 @@ public void onGadgetOpen(PlayerInteractEvent event) {
     public void onGadgetsClick(InventoryClickEvent event) {
         if(!(event.getWhoClicked() instanceof Player)) return;
         Player spieler = (Player) event.getWhoClicked();
-        if(event.getInventory().getTitle().equals(GadgetsGUI)) {
+        if(event.getInventory().getTitle().equals(gadgetsGUI)) {
             event.setCancelled(true);
             switch(event.getCurrentItem().getType()) {
                 case ENDER_PEARL:
@@ -143,41 +143,41 @@ public void onGadgetOpen(PlayerInteractEvent event) {
     public void OnEffekteClick(InventoryClickEvent event) {
         if(!(event.getWhoClicked() instanceof Player)) return;
         Player spieler = (Player) event.getWhoClicked();
-        if(event.getInventory().getTitle().equals(EffektGUI)) {
+        if(event.getInventory().getTitle().equals(effectGUI)) {
             event.setCancelled(true);
             switch(event.getCurrentItem().getType()) {
                 case RED_ROSE:
-                    if(Lobby.getWasserPartikel().contains(spieler)) {
-                        Lobby.getWasserPartikel().remove(spieler);
+                    if(Lobby.getWaterParticles().contains(spieler)) {
+                        Lobby.getWaterParticles().remove(spieler);
                     }
-                    if(Lobby.getHerzPartikel().contains(spieler)) {
+                    if(Lobby.getHeartParticles().contains(spieler)) {
                         spieler.closeInventory();
                         spieler.sendMessage(Lobby.Prefix + "Du hast bereits diesen §ePartikel §7ausgewählt.");
                     }
                     else{
                         spieler.closeInventory();
                         spieler.sendMessage(Lobby.Prefix + "Du hast nun die §eHerz Partikel §7ausgewählt.");
-                        Lobby.getHerzPartikel().add(spieler);
+                        Lobby.getHeartParticles().add(spieler);
                     }
                     break;
                 case WATER_LILY:
-                    if(Lobby.getHerzPartikel().contains(spieler)) {
-                        Lobby.getHerzPartikel().remove(spieler);
+                    if(Lobby.getHeartParticles().contains(spieler)) {
+                        Lobby.getHeartParticles().remove(spieler);
                     }
-                    if(Lobby.getWasserPartikel().contains(spieler)) {
+                    if(Lobby.getWaterParticles().contains(spieler)) {
                         spieler.closeInventory();
                         spieler.sendMessage(Lobby.Prefix + "Du hast bereits diesen §ePartikel §7ausgewählt.");
                 }
                     else{
                         spieler.closeInventory();
                         spieler.sendMessage(Lobby.Prefix + "Du hast nun die §eWasser Partikel §7ausgewählt.");
-                        Lobby.getWasserPartikel().add(spieler);
+                        Lobby.getWaterParticles().add(spieler);
                     }
                     break;
                 case BARRIER:
-                    Lobby.getEnderPartikel().remove(spieler);
-                    Lobby.getHerzPartikel().remove(spieler);
-                    Lobby.getWasserPartikel().remove(spieler);
+                    Lobby.getEnderParticles().remove(spieler);
+                    Lobby.getHeartParticles().remove(spieler);
+                    Lobby.getWaterParticles().remove(spieler);
 
                     spieler.closeInventory();
                     spieler.sendMessage(Lobby.Prefix + "Du hast §ealle §7deine Partikel abgelegt");

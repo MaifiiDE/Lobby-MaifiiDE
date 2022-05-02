@@ -3,7 +3,7 @@ package de.maifii.lobby.main;
 import de.maifii.lobby.commands.BuildCommand;
 import de.maifii.lobby.commands.SetCommand;
 import de.maifii.lobby.listeners.*;
-import de.maifii.lobby.listeners.Gadgets.EnderPerleListener;
+import de.maifii.lobby.listeners.Gadgets.EnderPearlListener;
 import net.minecraft.server.v1_8_R3.GameRules;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
@@ -18,10 +18,10 @@ public class Lobby extends JavaPlugin {
     public static final String Prefix = "§6>> §eLobby §7";
     private static Lobby instance;
 
-    private static ArrayList<Player> BuildMode;
-    private static ArrayList<Player> WasserPartikel;
-    private static ArrayList<Player> EnderPartikel;
-    private static ArrayList<Player> HerzPartikel;
+    private static ArrayList<Player> buildMode;
+    private static ArrayList<Player> waterParticles;
+    private static ArrayList<Player> enderParticles;
+    private static ArrayList<Player> heartParticles;
 
 
     public void register(PluginManager pluginManager) {
@@ -30,8 +30,8 @@ public class Lobby extends JavaPlugin {
         pluginManager.registerEvents(new MoveListener(), this);
         pluginManager.registerEvents(new ProtectListener(), this);
         pluginManager.registerEvents(new ConnectionListener(), this);
-        pluginManager.registerEvents(new NormalesInvClickListener(), this);
-        pluginManager.registerEvents(new EnderPerleListener(), this);
+        pluginManager.registerEvents(new InventoryClickListener(), this);
+        pluginManager.registerEvents(new EnderPearlListener(), this);
 
         getCommand("set").setExecutor(new SetCommand());
         getCommand("build").setExecutor(new BuildCommand());
@@ -43,10 +43,10 @@ public class Lobby extends JavaPlugin {
         this.register(Bukkit.getPluginManager());
 
         instance = instance;
-        WasserPartikel = new ArrayList<Player>();
-        EnderPartikel = new ArrayList<Player>();
-        HerzPartikel = new ArrayList<Player>();
-        BuildMode = new ArrayList<Player>();
+        waterParticles = new ArrayList<Player>();
+        enderParticles = new ArrayList<Player>();
+        heartParticles = new ArrayList<Player>();
+        buildMode = new ArrayList<Player>();
     }
 
     @Override
@@ -63,20 +63,20 @@ public class Lobby extends JavaPlugin {
         return instance;
     }
 
-    public static ArrayList<Player> getWasserPartikel() {
-        return WasserPartikel;
+    public static ArrayList<Player> getWaterParticles() {
+        return waterParticles;
     }
 
-    public static ArrayList<Player> getHerzPartikel() {
-        return HerzPartikel;
+    public static ArrayList<Player> getHeartParticles() {
+        return heartParticles;
     }
 
-    public static ArrayList<Player> getEnderPartikel() {
-        return EnderPartikel;
+    public static ArrayList<Player> getEnderParticles() {
+        return enderParticles;
     }
 
     public static ArrayList<Player> getBuildMode() {
-        return BuildMode;
+        return buildMode;
     }
 
 }

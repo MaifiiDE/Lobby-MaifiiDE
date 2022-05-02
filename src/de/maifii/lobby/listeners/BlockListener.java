@@ -19,18 +19,18 @@ public class BlockListener implements Listener {
 
     @EventHandler
     public void onBreak(BlockBreakEvent event) {
-        Player spieler = (Player) event.getPlayer();
+        Player player = (Player) event.getPlayer();
 
-        if(!Lobby.getBuildMode().contains(spieler)) {
+        if(!Lobby.getBuildMode().contains(player)) {
             event.setCancelled(true);
         }
     }
 
     @EventHandler
     public void onPlace(BlockPlaceEvent event) {
-        Player spieler = (Player) event.getPlayer();
+        Player player = (Player) event.getPlayer();
 
-        if(!Lobby.getBuildMode().contains(spieler)) {
+        if(!Lobby.getBuildMode().contains(player)) {
             event.setCancelled(true);
         }
     }

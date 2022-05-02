@@ -14,18 +14,18 @@ import org.bukkit.event.block.Action;
 import org.bukkit.event.player.PlayerInteractEvent;
 
 
-public class EnderPerleListener implements Listener {
+public class EnderPearlListener implements Listener {
 
 
     @EventHandler
     public void onEnderPerle(PlayerInteractEvent event) {
         if (event.getItem() != null && event.getItem().getType() == Material.ENDER_PEARL) {
             if (event.getAction() == Action.RIGHT_CLICK_AIR || event.getAction() == Action.RIGHT_CLICK_BLOCK) {
-                Player spieler = event.getPlayer();
+                Player player = event.getPlayer();
                 event.setCancelled(true);
 
-                EnderPearl enderPearl = spieler.launchProjectile(EnderPearl.class);
-                enderPearl.setPassenger(spieler);
+                EnderPearl enderPearl = player.launchProjectile(EnderPearl.class);
+                enderPearl.setPassenger(player);
             }
         }
     }
