@@ -12,14 +12,14 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.inventory.InventoryClickEvent;
 
 
-public class NormalesInvClickListener implements Listener {
+public class InventoryClickListener implements Listener {
 
 
 
     @EventHandler
     public void onNormalClick(InventoryClickEvent event) {
-        Player spieler = (Player) event.getWhoClicked();
-        if(!Lobby.getBuildMode().contains(spieler))
+        Player player = (Player) event.getWhoClicked();
+        if(!Lobby.getBuildMode().contains(player))
         event.setCancelled(true);
     }
 }

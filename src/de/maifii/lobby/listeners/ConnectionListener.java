@@ -23,9 +23,9 @@ public class ConnectionListener implements Listener {
 
     @EventHandler
     public void onConnect(PlayerJoinEvent event) {
-        Player spieler = (Player) event.getPlayer();
+        Player player = (Player) event.getPlayer();
 
-        spieler.getInventory().clear();
+        player.getInventory().clear();
 
         ItemUtils.setItemInInventory(event.getPlayer().getInventory(), Material.COMPASS, "§6>> §eNavigator", 0);
         ItemUtils.setItemInInventory(event.getPlayer().getInventory(), Material.BREWING_STAND_ITEM, "§6>> §ePartikel", 2);
@@ -40,12 +40,12 @@ public class ConnectionListener implements Listener {
 
     @EventHandler
     public void onDisconnect(PlayerQuitEvent event) {
-        Player spieler = (Player) event.getPlayer();
+        Player player = (Player) event.getPlayer();
 
-        Lobby.getBuildMode().remove(spieler);
-        Lobby.getEnderPartikel().remove(spieler);
-        Lobby.getHerzPartikel().remove(spieler);
-        Lobby.getWasserPartikel().remove(spieler);
+        Lobby.getBuildMode().remove(player);
+        Lobby.getEnderParticles().remove(player);
+        Lobby.getHeartParticles().remove(player);
+        Lobby.getWaterParticles().remove(player);
 
         event.setQuitMessage(null);
     }

@@ -11,12 +11,12 @@ import java.io.IOException;
 
 
 public class LocationUtils {
-    public static void setLocation(String name, Player spieler){
-        File ordner = new File("plugins//Lobby//");
+    public static void setLocation(String name, Player player){
+        File directory = new File("plugins//Lobby//");
         File file = new File("plugins//Lobby//" + name + ".yml");
 
-        if(!ordner.exists()){
-            ordner.mkdir();
+        if(!directory.exists()){
+            directory.mkdir();
         }
         if(!file.exists()){
             try {
@@ -27,7 +27,7 @@ public class LocationUtils {
         }
 
         FileConfiguration cfg = YamlConfiguration.loadConfiguration(file);
-        Location loc = spieler.getLocation();
+        Location loc = player.getLocation();
 
         cfg.set("X", loc.getBlockX());
         cfg.set("Y", loc.getBlockY());

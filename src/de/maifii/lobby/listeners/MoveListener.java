@@ -19,16 +19,16 @@ public class MoveListener implements Listener {
 
     @EventHandler
     public void onMove(PlayerMoveEvent event) {
-        Player spieler = (Player) event.getPlayer();
+        Player player = (Player) event.getPlayer();
 
-        if(Lobby.getEnderPartikel().contains(spieler)) {
-            spieler.getWorld().playEffect(spieler.getLocation(), Effect.ENDER_SIGNAL, 1);
+        if(Lobby.getEnderParticles().contains(player)) {
+            player.getWorld().playEffect(player.getLocation(), Effect.ENDER_SIGNAL, 1);
         }
-        if(Lobby.getHerzPartikel().contains(spieler)) {
-            spieler.getWorld().playEffect(spieler.getLocation(), Effect.HEART, 1);
+        if(Lobby.getHeartParticles().contains(player)) {
+            player.getWorld().playEffect(player.getLocation(), Effect.HEART, 1);
         }
-        if(Lobby.getWasserPartikel().contains(spieler)) {
-            spieler.getWorld().playEffect(spieler.getLocation(), Effect.WATERDRIP, 1);
+        if(Lobby.getWaterParticles().contains(player)) {
+            player.getWorld().playEffect(player.getLocation(), Effect.WATERDRIP, 1);
         }
 
     }
